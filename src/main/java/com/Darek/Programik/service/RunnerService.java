@@ -103,7 +103,7 @@ public class RunnerService {
             System.out.println("1 - Dodaj nową ksiązkę");
             System.out.println("2 - Usuń książkę");
             System.out.println("3 - Wyświetl swoje książki");
-            //          System.out.println("4 - Zapis listy książek do pliku");
+            System.out.println("4 - Praca z danymi książki");
             System.out.println("0 - Wyjście z programu");
             System.out.println("Wpisz opcję i wciśniej Enter");
 
@@ -124,11 +124,40 @@ public class RunnerService {
                     adminService.showBookList();
                     break;
                 }
-//                case 4: {
-//                    //plikService.zapisywaniePlik();
-//                    adminService.zapisywaniePlik2();
-//                    break;
-//                }
+                case 4: {
+                    handleBook();
+                    break;
+                }
+                case 0:
+                    wyjscie = false;
+                    break;
+            }
+        }
+    }
+
+    private void handleBook() throws IOException {
+        boolean wyjscie = true;
+        while (wyjscie) {
+
+            System.out.println("Wybierz co chcesz zrobić");
+            System.out.println("1 - Zmień cenę książki");
+            System.out.println("2 - Zmień ilość książek");
+            System.out.println("0 - Wyjście z programu");
+            System.out.println("Wpisz opcję i wciśniej Enter");
+
+            Scanner klawiaturaWybor = new Scanner(System.in);
+
+            int wybor = klawiaturaWybor.nextInt();
+
+            switch (wybor) {
+                case 1: {
+                    adminService.changePrice();
+                    break;
+                }
+                case 2: {
+                    adminService.changeQuantity();
+                    break;
+                }
                 case 0:
                     wyjscie = false;
                     break;

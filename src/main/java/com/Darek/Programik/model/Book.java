@@ -8,6 +8,7 @@ public class Book {
     private String author;
     private String type;
     private int quantity;
+    private  float price;
 
     public Book(int id,String title, String author, String type, int quantity) {
         this.id = id;
@@ -17,20 +18,14 @@ public class Book {
         this.quantity = quantity;
     }
 
-    public Book(String title, String author, String type, int quantity) {
+    public Book(String title, String author, String type, int quantity, float price) {
         this.title = title;
         this.author = author;
         this.type = type;
         this.quantity = quantity;
+        this.price = price;
     }
 
-    //    public Book() {
-//        this.id = id;
-//        this.title = title;
-//        this.author = author;
-//        this.type = type;
-//        this.quantity = quantity;
-//    }
     public int calculatingQuantity(int x)
     {
         this.quantity = quantity - x;
@@ -82,6 +77,14 @@ public class Book {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public float getPrice() {
+        return price;
+    }
+
+    public void setPrice(float price) {
+        this.price = price;
     }
 
     @Override

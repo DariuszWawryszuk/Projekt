@@ -3,21 +3,20 @@ package com.Darek.Programik.model;
 public class BookInBasket {
 
     private int id;
-
     private int idBook;
-
     private String title;
-
     private int quantity;
+    private  float price;
 
-    public BookInBasket(int idBook, String book, int quantity) {
+    public BookInBasket(int idBook, String title, int quantity, float price) {
         this.idBook = idBook;
-        this.title = book;
+        this.title = title;
         this.quantity = quantity;
+        this.price = price;
     }
 
-    public BookInBasket(String book, int quantity) {
-        this.title = book;
+    public BookInBasket(String title, int quantity) {
+        this.title = title;
         this.quantity = quantity;
     }
 
@@ -49,10 +48,20 @@ public class BookInBasket {
     public int getIdBook() {
         return idBook;
     }
+
     public int getIdBook(Integer id) {
         return idBook;
     }
+
     public void setIdBook(int idBook) {
         this.idBook = idBook;
+    }
+
+    public float getPrice() {
+        return price;
+    }
+
+    public void setPrice(float price) {
+        this.price = price;
     }
 }

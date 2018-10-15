@@ -16,8 +16,9 @@ public class BasketRepository {
     private Map<Integer, BookInBasket> basket = new HashMap();
 
     public void addBookToBasket(int id, int ilosc){
-        String book = bookRepository.getBook(id).getTitle();
-        BookInBasket bookInBasket = new BookInBasket(id,book,ilosc);
+        String title = bookRepository.getBook(id).getTitle();
+        Float price = bookRepository.getBook(id).getPrice();
+        BookInBasket bookInBasket = new BookInBasket(id,title,ilosc,price);
         bookInBasket.setId(getNewId());
 
         basket.put(bookInBasket.getId(), bookInBasket);

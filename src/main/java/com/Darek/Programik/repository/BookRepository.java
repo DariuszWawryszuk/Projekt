@@ -15,8 +15,8 @@ public class BookRepository {
 
     }
 
-    public void createBook(String title, String author, String type, int quantity){
-        Book book = new Book(title, author, type, quantity);
+    public void createBook(String title, String author, String type, int quantity, float price){
+        Book book = new Book(title, author, type, quantity, price);
         book.setId(getNewId());
         books.put(book.getId(), book);
     }

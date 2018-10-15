@@ -37,6 +37,7 @@ public class UserService {
         System.out.println("Podaj ilość książek jakie chcesz dodać");
         Scanner entry1 = new Scanner(System.in);
         String iloscKsiazek = entry1.nextLine();
+
         int ilosc = Integer.parseInt(iloscKsiazek);
         if (ksiazka.getQuantity() <= ilosc) {
             System.out.println("Za mało książek w magazynie");
@@ -77,13 +78,16 @@ public class UserService {
 
     public void showBookList() {
         HashMap<Integer, BookInBasket> koszyk = basketRepository.findAllBooks();
+        float totalPrice = totalPrice(koszyk);
         if (koszyk.size() < 1) {
             System.out.println("Narazie nie ma żadnej ksiazki");
         } else {
             System.out.println();
             for (BookInBasket wynik : koszyk.values()) {
                 System.out.println("ID " + wynik.getId() + " Tytuł: " + wynik.getTitle() + " Ilość: " + wynik.getQuantity());
-            } }
+            }
+        System.out.println("Cena za cały koszyk: " + totalPrice);
+        }
     }
 
     public void daneSzczzegolowe() {
@@ -106,7 +110,9 @@ public class UserService {
         System.out.println("Autor: " + ksiazka.getAuthor());
         System.out.println("Rodzaj: " + ksiazka.getType());
         System.out.println("Ilość: " + bookInBasket.getQuantity());
-
+        System.out.println("Cena: " + ksiazka.getPrice());
+        float totalPriceBook = (bookInBasket.getPrice()) * (bookInBasket.getQuantity());
+        System.out.println("Łączna cena za książki: " + totalPriceBook);
         printContinue();
     }
 
@@ -114,5 +120,13 @@ public class UserService {
         System.out.println("Aby kontynuowac wcisnij dowolny przycisk");
         Scanner scanner = new Scanner(System.in);
         scanner.nextLine();
+    }
+
+    public Float totalPrice(HashMap<Integer,BookInBasket> basket){
+        float totalPrice = 0;
+        for (BookInBasket wynik : basket.values()) {
+            totalPrice = wynik.getPrice() * wynik.getQuantity() + totalPrice ;
+        }
+      return totalPrice;
     }
 }
