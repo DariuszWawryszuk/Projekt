@@ -42,7 +42,7 @@ public class BasketRepository {
 
     public List<BookInBasket> findAllBooks() {
 
-        return em.createQuery("from BOOK_IN_BASKET", BookInBasket.class).getResultList();
+        return em.createQuery("from BookInBasket", BookInBasket.class).getResultList();
     }
 
 }

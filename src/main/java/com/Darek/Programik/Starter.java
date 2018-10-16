@@ -36,8 +36,8 @@ public class Starter implements CommandLineRunner {
 
         basketRepository.addBookToBasket(1,66);
 
-        //List<BookInBasket> koszyk = basketRepository.findAllBooks();
-        BookInBasket koszyk = basketRepository.getBook(1);
+        List<BookInBasket> koszyk = basketRepository.findAllBooks();
+       // BookInBasket koszyk = basketRepository.getBook(1);
         System.out.println(koszyk);
 
        // runnerService.run();
