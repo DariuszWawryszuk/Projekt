@@ -1,7 +1,15 @@
 package com.Darek.Programik.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+@Entity
 public class BookInBasket {
 
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     private int idBook;
     private String title;
