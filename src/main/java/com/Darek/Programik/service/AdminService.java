@@ -70,18 +70,18 @@ public class AdminService {
     }
 
 
-    public void showBookList() {
-        HashMap<Integer, Book> zbior = bookRepository.findAllBooks();
-        if (zbior.size() < 1) {
-            System.out.println("Narazie nie ma żadnej ksiazki");
-        } else {
-            System.out.println();
-            for (Book wynik : zbior.values()) {
-                System.out.println("ID " + wynik.getId() + " Tytuł: " + wynik.getTitle() + " Autor: " + wynik.getAuthor() + " Rodzaj: "
-                        + wynik.getType() + " Ilość: " + wynik.getQuantity() + " Cena: " + wynik.getPrice());
-            } }
-        printContinue();
-    }
+//    public void showBookList() {
+//        HashMap<Integer, Book> zbior = bookRepository.findAllBooks();
+//        if (zbior.size() < 1) {
+//            System.out.println("Narazie nie ma żadnej ksiazki");
+//        } else {
+//            System.out.println();
+//            for (Book wynik : zbior.values()) {
+//                System.out.println("ID " + wynik.getId() + " Tytuł: " + wynik.getTitle() + " Autor: " + wynik.getAuthor() + " Rodzaj: "
+//                        + wynik.getType() + " Ilość: " + wynik.getQuantity() + " Cena: " + wynik.getPrice());
+//            } }
+//        printContinue();
+//    }
 
     public void changePrice(){
         System.out.println("Podaj ID ksiązki dla której chcesz zmeinić cenę");

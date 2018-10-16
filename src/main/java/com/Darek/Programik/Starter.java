@@ -1,10 +1,17 @@
 package com.Darek.Programik;
 
+import com.Darek.Programik.model.Book;
+import com.Darek.Programik.model.BookInBasket;
+import com.Darek.Programik.repository.BasketRepository;
 import com.Darek.Programik.repository.BookRepository;
 import com.Darek.Programik.service.RunnerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
+
+import javax.transaction.Transactional;
+import java.util.ArrayList;
+import java.util.List;
 
 @Component
 public class Starter implements CommandLineRunner {
@@ -13,12 +20,27 @@ public class Starter implements CommandLineRunner {
     BookRepository bookRepository;
 
     @Autowired
+    BasketRepository basketRepository;
+
+    @Autowired
     RunnerService runnerService;
 
+    @Transactional
     public void run(String... strings) throws Exception{
 
-        //bookRepository.createBook(1,"Tralala", "Super Autor", "Kryminał", 30);
-        runnerService.run();
+        bookRepository.createBook("Super książka", "Sienkiewicz","Komedia",400,888888);
+        bookRepository.createBook("asdas książka", "tatat","Komertedia",66,88);
+        bookRepository.createBook("Super sdas", "tyutyu","ert",66,888);
+        List<Book> zbior = bookRepository.findAllBooks();
+        System.out.println(zbior);
+
+        basketRepository.addBookToBasket(1,66);
+
+        //List<BookInBasket> koszyk = basketRepository.findAllBooks();
+        BookInBasket koszyk = basketRepository.getBook(1);
+        System.out.println(koszyk);
+
+       // runnerService.run();
 
     }
 }

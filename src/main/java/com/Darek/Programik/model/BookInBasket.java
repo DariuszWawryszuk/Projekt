@@ -1,9 +1,7 @@
 package com.Darek.Programik.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+
 @Entity
 public class BookInBasket {
 
@@ -28,6 +26,8 @@ public class BookInBasket {
         this.quantity = quantity;
     }
 
+//    @OneToOne
+//    private  Book book;
 
     public int getId() {
         return id;
@@ -71,5 +71,16 @@ public class BookInBasket {
 
     public void setPrice(float price) {
         this.price = price;
+    }
+
+    @Override
+    public String toString() {
+        return "BookInBasket{" +
+                "id=" + id +
+                ", idBook=" + idBook +
+                ", title='" + title + '\'' +
+                ", quantity=" + quantity +
+                ", price=" + price +
+                '}';
     }
 }

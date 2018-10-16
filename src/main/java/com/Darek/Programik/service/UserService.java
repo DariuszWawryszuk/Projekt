@@ -76,19 +76,19 @@ public class UserService {
     }
 
 
-    public void showBookList() {
-        HashMap<Integer, BookInBasket> koszyk = basketRepository.findAllBooks();
-        float totalPrice = totalPrice(koszyk);
-        if (koszyk.size() < 1) {
-            System.out.println("Narazie nie ma żadnej ksiazki");
-        } else {
-            System.out.println();
-            for (BookInBasket wynik : koszyk.values()) {
-                System.out.println("ID " + wynik.getId() + " Tytuł: " + wynik.getTitle() + " Ilość: " + wynik.getQuantity());
-            }
-        System.out.println("Cena za cały koszyk: " + totalPrice);
-        }
-    }
+//    public void showBookList() {
+//        HashMap<Integer, BookInBasket> koszyk = basketRepository.findAllBooks();
+//        float totalPrice = totalPrice(koszyk);
+//        if (koszyk.size() < 1) {
+//            System.out.println("Narazie nie ma żadnej ksiazki");
+//        } else {
+//            System.out.println();
+//            for (BookInBasket wynik : koszyk.values()) {
+//                System.out.println("ID " + wynik.getId() + " Tytuł: " + wynik.getTitle() + " Ilość: " + wynik.getQuantity());
+//            }
+//        System.out.println("Cena za cały koszyk: " + totalPrice);
+//        }
+//    }
 
     public void daneSzczzegolowe() {
         System.out.println("Podaj ID książki ktorej chcesz poznać danettt:");

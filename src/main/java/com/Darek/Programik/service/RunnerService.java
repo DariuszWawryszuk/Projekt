@@ -65,10 +65,10 @@ public class RunnerService {
             int wybor = klawiaturaWybor.nextInt();
             try {
                 switch (wybor) {
-                    case 1: {
-                        adminService.showBookList();
-                        break;
-                    }
+//                    case 1: {
+//                        adminService.showBookList();
+//                        break;
+//                    }
                     case 2: {
                         userService.dodanieKoszyk();
                         break;
@@ -77,10 +77,10 @@ public class RunnerService {
                         userService.usuniecieKszyk();
                         break;
                     }
-                    case 4: {
-                        userService.showBookList();
-                        break;
-                    }
+//                    case 4: {
+//                        userService.showBookList();
+//                        break;
+//                    }
                     case 5:
                         userService.daneSzczzegolowe();
                         break;
@@ -120,10 +120,10 @@ public class RunnerService {
                     adminService.deleteBook();
                     break;
                 }
-                case 3: {
-                    adminService.showBookList();
-                    break;
-                }
+//                case 3: {
+//                    adminService.showBookList();
+//                    break;
+//                }
                 case 4: {
                     handleBook();
                     break;
