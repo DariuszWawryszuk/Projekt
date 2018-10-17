@@ -2,9 +2,6 @@ package com.Darek.Programik.model;
 
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 
 @Entity(name = "Book")
 public class BookEntity

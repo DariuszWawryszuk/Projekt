@@ -1,7 +1,6 @@
 package com.Darek.Programik.model;
 
 import javax.persistence.*;
-import javax.persistence.Id;
 
 @Entity
 public class BookInBasket
