@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Scanner;
 
 @Repository
@@ -63,25 +64,25 @@ public class AdminService {
             printContinue();
             return;
         }
-        bookRepository.deleteBook(id);
+        Book book = bookRepository.getBook(id);
+        bookRepository.deleteBook(book);
         System.out.println("Usunięto książkę");
 
         printContinue();
     }
 
 
-//    public void showBookList() {
-//        HashMap<Integer, Book> zbior = bookRepository.findAllBooks();
-//        if (zbior.size() < 1) {
-//            System.out.println("Narazie nie ma żadnej ksiazki");
-//        } else {
-//            System.out.println();
-//            for (Book wynik : zbior.values()) {
-//                System.out.println("ID " + wynik.getId() + " Tytuł: " + wynik.getTitle() + " Autor: " + wynik.getAuthor() + " Rodzaj: "
-//                        + wynik.getType() + " Ilość: " + wynik.getQuantity() + " Cena: " + wynik.getPrice());
-//            } }
-//        printContinue();
-//    }
+    public void showBookList() {
+        List<Book> zbior = bookRepository.findAllBooks();
+        if (zbior.size() < 1) {
+            System.out.println("Narazie nie ma żadnej ksiazki");
+        } else {
+            System.out.println();
+            for (Book wynik : zbior)
+                System.out.println(wynik);
+            }
+        printContinue();
+    }
 
     public void changePrice(){
         System.out.println("Podaj ID ksiązki dla której chcesz zmeinić cenę");

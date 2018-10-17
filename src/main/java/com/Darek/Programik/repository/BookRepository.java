@@ -17,8 +17,6 @@ public class BookRepository {
     @PersistenceContext
     private EntityManager em;
 
-   // private Map<Integer, Book> books = new HashMap<Integer, Book>();
-
     public BookRepository(){
 
     }
@@ -30,9 +28,9 @@ public class BookRepository {
         em.persist(book);
     }
     @Transactional
-    public void deleteBook(int id){
+    public void deleteBook(Book book){
 
-        em.remove(id);
+        em.remove(book);
     }
 
     public List<Book> findAllBooks() {

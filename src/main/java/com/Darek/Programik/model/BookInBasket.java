@@ -21,66 +21,30 @@ public class BookInBasket {
         this.price = price;
     }
 
-    public BookInBasket(String title, int quantity) {
-        this.title = title;
-        this.quantity = quantity;
-    }
-
-//    @OneToOne
-//    private  Book book;
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public String getTitle() {
         return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
     }
 
     public int getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
-
-    public int getIdBook() {
-        return idBook;
-    }
-
     public int getIdBook(Integer id) {
         return idBook;
-    }
-
-    public void setIdBook(int idBook) {
-        this.idBook = idBook;
     }
 
     public float getPrice() {
         return price;
     }
 
-    public void setPrice(float price) {
-        this.price = price;
-    }
-
     @Override
     public String toString() {
-        return "BookInBasket{" +
-                "id=" + id +
-                ", idBook=" + idBook +
-                ", title='" + title + '\'' +
-                ", quantity=" + quantity +
-                ", price=" + price +
+        return
+                "id: " + id +
+                ", idBook: " + idBook +
+                ", title: '" + title + '\'' +
+                ", quantity: " + quantity +
+                ", price: " + price +
                 '}';
     }
 }

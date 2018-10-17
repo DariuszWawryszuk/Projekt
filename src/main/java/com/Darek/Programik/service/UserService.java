@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Scanner;
 
 @Repository
@@ -65,30 +66,30 @@ public class UserService {
         }
 
 
-        Integer idBook = bookInBasket.getIdBook(id);
-        Book ksiazka = bookRepository.getBook(idBook);
-        ksiazka.addingQuantity(bookInBasket.getQuantity());
+        Integer idBook = bookInBasket.getIdBook(id); // pobieram Id Książki z koszyka
+        Book ksiazka = bookRepository.getBook(idBook); // tworzę instancję ksiązki
+        ksiazka.addingQuantity(bookInBasket.getQuantity()); // dodaję ilośc książek do magazynu
 
-        basketRepository.deleteFromBasket(id);
+        basketRepository.deleteFromBasket(bookInBasket);
 
 
         printContinue();
     }
 
 
-//    public void showBookList() {
-//        HashMap<Integer, BookInBasket> koszyk = basketRepository.findAllBooks();
-//        float totalPrice = totalPrice(koszyk);
-//        if (koszyk.size() < 1) {
-//            System.out.println("Narazie nie ma żadnej ksiazki");
-//        } else {
-//            System.out.println();
-//            for (BookInBasket wynik : koszyk.values()) {
-//                System.out.println("ID " + wynik.getId() + " Tytuł: " + wynik.getTitle() + " Ilość: " + wynik.getQuantity());
-//            }
-//        System.out.println("Cena za cały koszyk: " + totalPrice);
-//        }
-//    }
+    public void showBookList() {
+        List<BookInBasket> koszyk = basketRepository.findAllBooks();
+        float totalPrice = totalPrice(koszyk);
+        if (koszyk.size() < 1) {
+            System.out.println("Narazie nie ma żadnej ksiazki");
+        } else {
+            System.out.println();
+            for (BookInBasket wynik : koszyk) {
+                System.out.println(wynik);
+            }
+        System.out.println("Cena za cały koszyk: " + totalPrice);
+        }
+    }
 
     public void daneSzczzegolowe() {
         System.out.println("Podaj ID książki ktorej chcesz poznać danettt:");
@@ -122,9 +123,9 @@ public class UserService {
         scanner.nextLine();
     }
 
-    public Float totalPrice(HashMap<Integer,BookInBasket> basket){
+    public Float totalPrice(List<BookInBasket> basket){
         float totalPrice = 0;
-        for (BookInBasket wynik : basket.values()) {
+        for (BookInBasket wynik : basket) {
             totalPrice = wynik.getPrice() * wynik.getQuantity() + totalPrice ;
         }
       return totalPrice;

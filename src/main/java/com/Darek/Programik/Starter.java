@@ -31,16 +31,8 @@ public class Starter implements CommandLineRunner {
         bookRepository.createBook("Super książka", "Sienkiewicz","Komedia",400,888888);
         bookRepository.createBook("asdas książka", "tatat","Komertedia",66,88);
         bookRepository.createBook("Super sdas", "tyutyu","ert",66,888);
-        List<Book> zbior = bookRepository.findAllBooks();
-        System.out.println(zbior);
 
-        basketRepository.addBookToBasket(1,66);
-
-        List<BookInBasket> koszyk = basketRepository.findAllBooks();
-       // BookInBasket koszyk = basketRepository.getBook(1);
-        System.out.println(koszyk);
-
-       // runnerService.run();
+        runnerService.run();
 
     }
 }

@@ -20,8 +20,6 @@ public class BasketRepository {
     @Autowired
     BookRepository bookRepository;
 
-    private Map<Integer, BookInBasket> basket = new HashMap();
-
     @Transactional
     public void addBookToBasket(int id, int ilosc){
         String title = bookRepository.getBook(id).getTitle();
@@ -37,7 +35,7 @@ public class BasketRepository {
     }
 
     @Transactional
-    public void deleteFromBasket(int ind) { em.remove(ind);}
+    public void deleteFromBasket(BookInBasket bookInBasket) { em.remove(bookInBasket);}
 
 
     public List<BookInBasket> findAllBooks() {
