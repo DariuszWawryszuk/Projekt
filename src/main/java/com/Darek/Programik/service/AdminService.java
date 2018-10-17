@@ -52,19 +52,21 @@ public class AdminService {
 
     public void deleteBook() {
         System.out.println("Podaj ID ksiązki którą chcesz usunąć");
-        Scanner entry = new Scanner(System.in);
-        String idNew = entry.nextLine();
-        int id = Integer.parseInt(idNew);
+//        Scanner entry = new Scanner(System.in);
+//        String idNew = entry.nextLine();
+//        int id = Integer.parseInt(idNew);
 
-        BookEntity ksiazka = bookRepository.getBook(id);
+        Scanner entry = new Scanner(System.in);
+        int id = entry.nextInt();
+
+        BookEntity ksiazka = bookRepository.getBookById(id);
 
         if (ksiazka == null) {
             System.out.println("Nie znaleziono książki o takim tytule");
             printContinue();
             return;
         }
-        BookEntity bookEntity = bookRepository.getBook(id);
-        bookRepository.deleteBook(bookEntity);
+        bookRepository.deleteBook(ksiazka);
         System.out.println("Usunięto książkę");
 
         printContinue();
@@ -85,11 +87,13 @@ public class AdminService {
 
     public void changePrice(){
         System.out.println("Podaj ID ksiązki dla której chcesz zmeinić cenę");
+//        Scanner entry = new Scanner(System.in);
+//        String idNew = entry.nextLine();
+//        int id = Integer.parseInt(idNew);
         Scanner entry = new Scanner(System.in);
-        String idNew = entry.nextLine();
-        int id = Integer.parseInt(idNew);
+        int id = entry.nextInt();
 
-        BookEntity bookEntity = bookRepository.getBook(id);
+        BookEntity bookEntity = bookRepository.getBookById(id);
 
         if (bookEntity == null) {
             System.out.println("Nie znaleziono książki o takim tytule");
@@ -98,9 +102,12 @@ public class AdminService {
         }
 
         System.out.println("Aktualna cena książki to: " + bookEntity.getPrice() + " Podaj nową cenę książki: ");
-        entry = new Scanner(System.in);
-        String newPrice = entry.nextLine();
-        float price = Float.parseFloat(newPrice);
+//        entry = new Scanner(System.in);
+//        String newPrice = entry.nextLine();
+//        float price = Float.parseFloat(newPrice);
+
+        Scanner newPrice = new Scanner(System.in);
+        int price = newPrice.nextInt();
 
         bookEntity.setPrice(price);
 
@@ -110,11 +117,14 @@ public class AdminService {
 
     public void changeQuantity(){
         System.out.println("Podaj ID ksiązki dla której chcesz zmeinić ilość");
-        Scanner entry = new Scanner(System.in);
-        String idNew = entry.nextLine();
-        int id = Integer.parseInt(idNew);
+//        Scanner entry = new Scanner(System.in);
+//        String idNew = entry.nextLine();
+//        int id = Integer.parseInt(idNew);
 
-        BookEntity bookEntity = bookRepository.getBook(id);
+        Scanner entry = new Scanner(System.in);
+        int id = entry.nextInt();
+
+        BookEntity bookEntity = bookRepository.getBookById(id);
 
         if (bookEntity == null) {
             System.out.println("Nie znaleziono książki o takim tytule");
@@ -123,9 +133,12 @@ public class AdminService {
         }
 
         System.out.println("Aktualna ilość książek to: " + bookEntity.getQuantity() + " Podaj nową ilość książek: ");
-        entry = new Scanner(System.in);
-        String newQuantity = entry.nextLine();
-        int quantity = Integer.parseInt(newQuantity);
+//        entry = new Scanner(System.in);
+//        String newQuantity = entry.nextLine();
+//        int quantity = Integer.parseInt(newQuantity);
+
+        Scanner newQuantity = new Scanner(System.in);
+        int quantity = newQuantity.nextInt();
 
         bookEntity.setQuantity(quantity);
 

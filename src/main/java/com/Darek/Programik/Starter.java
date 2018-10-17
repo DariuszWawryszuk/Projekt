@@ -1,6 +1,7 @@
 package com.Darek.Programik;
 
 
+import com.Darek.Programik.model.BookEntity;
 import com.Darek.Programik.repository.BookRepository;
 import com.Darek.Programik.service.RunnerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,7 @@ public class Starter implements CommandLineRunner {
     public void run(String... strings) throws Exception{
 
         runnerService.run();
+
 
     }
 }

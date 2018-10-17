@@ -9,7 +9,7 @@ import javax.transaction.Transactional;
 import java.util.List;
 
 @Repository
-public class BookRepository {
+public class BookRepository  {
 
     @PersistenceContext
     private EntityManager em;
@@ -18,24 +18,26 @@ public class BookRepository {
 
     }
 
+
     @Transactional
     public void createBook(String title, String author, String type, int quantity, float price){
         BookEntity bookEntity = new BookEntity(title, author, type, quantity, price);
 
         em.persist(bookEntity);
     }
+
     @Transactional
     public void deleteBook(BookEntity bookEntity){
-
         em.remove(bookEntity);
     }
+
 
     public List<BookEntity> findAllBooks() {
 
        return em.createQuery("from Book", BookEntity.class).getResultList();
     }
 
-    public BookEntity getBook(Integer id){
+    public BookEntity getBookById(int id){
 
         return em.find(BookEntity.class,id);
     }

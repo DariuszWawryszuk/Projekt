@@ -47,7 +47,7 @@ public class BookInBasket
     @Override
     public String toString() {
         return
-                //"id: " + getId() +
+                "id: " + getId() +
                 ", idBook: " + idBook +
                 ", title: '" + title + '\'' +
                 ", quantity: " + quantity +

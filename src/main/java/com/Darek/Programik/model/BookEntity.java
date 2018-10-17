@@ -75,7 +75,7 @@ public class BookEntity
     @Override
     public String toString() {
         return
-               // "ID " + getId() +
+                "ID " + getId() +
                         " Tytuł: " + title + " Autor: " + author + " Rodzaj: "
                 + type + " Ilość: " + quantity + " Cena: " + price;
     }

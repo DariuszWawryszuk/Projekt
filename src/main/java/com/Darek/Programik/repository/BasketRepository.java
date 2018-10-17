@@ -20,8 +20,8 @@ public class BasketRepository {
 
     @Transactional
     public void addBookToBasket(int id, int ilosc){
-        String title = bookRepository.getBook(id).getTitle();
-        Float price = bookRepository.getBook(id).getPrice();
+        String title = bookRepository.getBookById(id).getTitle();
+        Float price = bookRepository.getBookById(id).getPrice();
         BookInBasket bookInBasket = new BookInBasket(id,title,ilosc,price);
 
         em.persist(bookInBasket);

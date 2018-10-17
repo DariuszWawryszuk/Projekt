@@ -27,9 +27,9 @@ public class UserService {
         String wybor = entry.nextLine();
         int id = Integer.parseInt(wybor);
 
-        BookEntity ksiazka = bookRepository.getBook(id);
+        BookEntity book = bookRepository.getBookById(id);
 
-        if (ksiazka == null) {
+        if (book == null) {
             System.out.println("Nie znaleziono książki o takim ID");
             return;
         }
@@ -39,14 +39,14 @@ public class UserService {
         String iloscKsiazek = entry1.nextLine();
 
         int ilosc = Integer.parseInt(iloscKsiazek);
-        if (ksiazka.getQuantity() <= ilosc) {
+        if (book.getQuantity() <= ilosc) {
             System.out.println("Za mało książek w magazynie");
             return;
         }
 
         basketRepository.addBookToBasket(id, ilosc);
 
-        ksiazka.calculatingQuantity(ilosc);
+        book.calculatingQuantity(ilosc);
 
         printContinue();
     }
@@ -66,8 +66,8 @@ public class UserService {
 
 
         Integer idBook = bookInBasket.getIdBook(id); // pobieram Id Książki z koszyka
-        BookEntity ksiazka = bookRepository.getBook(idBook); // tworzę instancję ksiązki
-        ksiazka.addingQuantity(bookInBasket.getQuantity()); // dodaję ilośc książek do magazynu
+        BookEntity book = bookRepository.getBookById(idBook); // tworzę instancję ksiązki
+        book.addingQuantity(bookInBasket.getQuantity()); // dodaję ilośc książek do magazynu
 
         basketRepository.deleteFromBasket(bookInBasket);
 
@@ -77,13 +77,13 @@ public class UserService {
 
 
     public void showBookList() {
-        List<BookInBasket> koszyk = basketRepository.findAllBooks();
-        float totalPrice = totalPrice(koszyk);
-        if (koszyk.size() < 1) {
+        List<BookInBasket> basket = basketRepository.findAllBooks();
+        float totalPrice = totalPrice(basket);
+        if (basket.size() < 1) {
             System.out.println("Narazie nie ma żadnej ksiazki");
         } else {
             System.out.println();
-            for (BookInBasket wynik : koszyk) {
+            for (BookInBasket wynik : basket) {
                 System.out.println(wynik);
             }
         System.out.println("Cena za cały koszyk: " + totalPrice);
@@ -104,13 +104,13 @@ public class UserService {
         }
 
         Integer idBook = bookInBasket.getIdBook(id);//pobieram IDKsiążki po ID koszyka, aby ptem stworzyćinstancje książki po tym ID
-        BookEntity ksiazka = bookRepository.getBook(idBook);
+        BookEntity book = bookRepository.getBookById(idBook);
 
         System.out.println("Tytuł: " + bookInBasket.getTitle());
-        System.out.println("Autor: " + ksiazka.getAuthor());
-        System.out.println("Rodzaj: " + ksiazka.getType());
+        System.out.println("Autor: " + book.getAuthor());
+        System.out.println("Rodzaj: " + book.getType());
         System.out.println("Ilość: " + bookInBasket.getQuantity());
-        System.out.println("Cena: " + ksiazka.getPrice());
+        System.out.println("Cena: " + book.getPrice());
         float totalPriceBook = (bookInBasket.getPrice()) * (bookInBasket.getQuantity());
         System.out.println("Łączna cena za książki: " + totalPriceBook);
         printContinue();
