@@ -1,15 +1,12 @@
 package com.Darek.Programik.repository;
 
-import com.Darek.Programik.model.Book;
+import com.Darek.Programik.model.BookEntity;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Repository
 public class BookRepository {
@@ -23,23 +20,23 @@ public class BookRepository {
 
     @Transactional
     public void createBook(String title, String author, String type, int quantity, float price){
-        Book book = new Book(title, author, type, quantity, price);
+        BookEntity bookEntity = new BookEntity(title, author, type, quantity, price);
 
-        em.persist(book);
+        em.persist(bookEntity);
     }
     @Transactional
-    public void deleteBook(Book book){
+    public void deleteBook(BookEntity bookEntity){
 
-        em.remove(book);
+        em.remove(bookEntity);
     }
 
-    public List<Book> findAllBooks() {
+    public List<BookEntity> findAllBooks() {
 
-       return em.createQuery("from Book", Book.class).getResultList();
+       return em.createQuery("from Book", BookEntity.class).getResultList();
     }
 
-    public Book getBook(Integer id){
+    public BookEntity getBook(Integer id){
 
-        return em.find(Book.class,id);
+        return em.find(BookEntity.class,id);
     }
 }

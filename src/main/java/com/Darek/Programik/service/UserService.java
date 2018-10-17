@@ -1,19 +1,18 @@
 package com.Darek.Programik.service;
 
-import com.Darek.Programik.model.Book;
+import com.Darek.Programik.model.BookEntity;
 
 import com.Darek.Programik.model.BookInBasket;
 import com.Darek.Programik.repository.BasketRepository;
 import com.Darek.Programik.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
 
-@Repository
+@Service
 public class UserService {
 
     @Autowired
@@ -23,12 +22,12 @@ public class UserService {
     BasketRepository basketRepository;
 
     public void dodanieKoszyk() {
-        System.out.println("Podaj ID ksiązki którą chcesz dodać do koszyka");
+        System.out.println("Podaj ID ksiązki którą chcesz dodać do koszyka tralala");
         Scanner entry = new Scanner(System.in);
-        String idNew = entry.nextLine();
-        int id = Integer.parseInt(idNew);
+        String wybor = entry.nextLine();
+        int id = Integer.parseInt(wybor);
 
-        Book ksiazka = bookRepository.getBook(id);
+        BookEntity ksiazka = bookRepository.getBook(id);
 
         if (ksiazka == null) {
             System.out.println("Nie znaleziono książki o takim ID");
@@ -67,7 +66,7 @@ public class UserService {
 
 
         Integer idBook = bookInBasket.getIdBook(id); // pobieram Id Książki z koszyka
-        Book ksiazka = bookRepository.getBook(idBook); // tworzę instancję ksiązki
+        BookEntity ksiazka = bookRepository.getBook(idBook); // tworzę instancję ksiązki
         ksiazka.addingQuantity(bookInBasket.getQuantity()); // dodaję ilośc książek do magazynu
 
         basketRepository.deleteFromBasket(bookInBasket);
@@ -105,7 +104,7 @@ public class UserService {
         }
 
         Integer idBook = bookInBasket.getIdBook(id);//pobieram IDKsiążki po ID koszyka, aby ptem stworzyćinstancje książki po tym ID
-        Book ksiazka = bookRepository.getBook(idBook);
+        BookEntity ksiazka = bookRepository.getBook(idBook);
 
         System.out.println("Tytuł: " + bookInBasket.getTitle());
         System.out.println("Autor: " + ksiazka.getAuthor());

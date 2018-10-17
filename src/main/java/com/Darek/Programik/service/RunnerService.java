@@ -1,17 +1,15 @@
 package com.Darek.Programik.service;
 
-import com.Darek.Programik.model.Book;
+
 import com.Darek.Programik.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Scanner;
 
 
-@Repository
+@Service
 public class RunnerService {
 
     @Autowired
@@ -48,7 +46,7 @@ public class RunnerService {
     }
 
 
-    private void handleUser() {
+    private void handleUser() throws IOException {
         boolean wyjscie = true;
         while (wyjscie) {
 
@@ -89,7 +87,7 @@ public class RunnerService {
                         break;
                 }
             } catch (Exception e) {
-                System.out.println("Jako wybór trzeba podać liczbę");
+                System.out.println("Jako wybór trzeba podać liczbę tralala");
             }
 
         }
@@ -108,7 +106,6 @@ public class RunnerService {
             System.out.println("Wpisz opcję i wciśniej Enter");
 
             Scanner klawiaturaWybor = new Scanner(System.in);
-
             int wybor = klawiaturaWybor.nextInt();
 
             switch (wybor) {

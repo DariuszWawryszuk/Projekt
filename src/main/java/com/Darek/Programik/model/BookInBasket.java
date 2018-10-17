@@ -1,18 +1,26 @@
 package com.Darek.Programik.model;
 
 import javax.persistence.*;
+import javax.persistence.Id;
 
 @Entity
-public class BookInBasket {
+public class BookInBasket
+        extends NewId
+{
 
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.AUTO)
+//    private long id;
+
     private int idBook;
     private String title;
     private int quantity;
     private  float price;
+
+    public BookInBasket(){
+
+    }
 
     public BookInBasket(int idBook, String title, int quantity, float price) {
         this.idBook = idBook;
@@ -40,7 +48,7 @@ public class BookInBasket {
     @Override
     public String toString() {
         return
-                "id: " + id +
+                //"id: " + getId() +
                 ", idBook: " + idBook +
                 ", title: '" + title + '\'' +
                 ", quantity: " + quantity +

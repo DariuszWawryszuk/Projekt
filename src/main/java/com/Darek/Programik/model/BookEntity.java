@@ -1,16 +1,19 @@
 package com.Darek.Programik.model;
 
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-@Entity
-public class Book {
+@Entity(name = "Book")
+public class BookEntity
+        extends NewId
+{
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.AUTO)
+//    private long id;
 
     private String title;
     private String author;
@@ -18,7 +21,10 @@ public class Book {
     private int quantity;
     private  float price;
 
-    public Book(String title, String author, String type, int quantity, float price) {
+    public BookEntity() {
+    }
+
+    public BookEntity(String title, String author, String type, int quantity, float price) {
         this.title = title;
         this.author = author;
         this.type = type;
@@ -71,7 +77,9 @@ public class Book {
 
     @Override
     public String toString() {
-        return "ID " + id + " Tytuł: " + title + " Autor: " + author + " Rodzaj: "
+        return
+               // "ID " + getId() +
+                        " Tytuł: " + title + " Autor: " + author + " Rodzaj: "
                 + type + " Ilość: " + quantity + " Cena: " + price;
     }
 }

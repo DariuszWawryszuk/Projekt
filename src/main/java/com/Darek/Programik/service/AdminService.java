@@ -1,15 +1,14 @@
 package com.Darek.Programik.service;
 
-import com.Darek.Programik.model.Book;
+import com.Darek.Programik.model.BookEntity;
 import com.Darek.Programik.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
 
-@Repository
+@Service
 public class AdminService {
 
     @Autowired
@@ -57,15 +56,15 @@ public class AdminService {
         String idNew = entry.nextLine();
         int id = Integer.parseInt(idNew);
 
-        Book ksiazka = bookRepository.getBook(id);
+        BookEntity ksiazka = bookRepository.getBook(id);
 
         if (ksiazka == null) {
             System.out.println("Nie znaleziono książki o takim tytule");
             printContinue();
             return;
         }
-        Book book = bookRepository.getBook(id);
-        bookRepository.deleteBook(book);
+        BookEntity bookEntity = bookRepository.getBook(id);
+        bookRepository.deleteBook(bookEntity);
         System.out.println("Usunięto książkę");
 
         printContinue();
@@ -73,12 +72,12 @@ public class AdminService {
 
 
     public void showBookList() {
-        List<Book> zbior = bookRepository.findAllBooks();
+        List<BookEntity> zbior = bookRepository.findAllBooks();
         if (zbior.size() < 1) {
             System.out.println("Narazie nie ma żadnej ksiazki");
         } else {
             System.out.println();
-            for (Book wynik : zbior)
+            for (BookEntity wynik : zbior)
                 System.out.println(wynik);
             }
         printContinue();
@@ -90,20 +89,20 @@ public class AdminService {
         String idNew = entry.nextLine();
         int id = Integer.parseInt(idNew);
 
-        Book book = bookRepository.getBook(id);
+        BookEntity bookEntity = bookRepository.getBook(id);
 
-        if (book == null) {
+        if (bookEntity == null) {
             System.out.println("Nie znaleziono książki o takim tytule");
             printContinue();
             return;
         }
 
-        System.out.println("Aktualna cena książki to: " + book.getPrice() + " Podaj nową cenę książki: ");
+        System.out.println("Aktualna cena książki to: " + bookEntity.getPrice() + " Podaj nową cenę książki: ");
         entry = new Scanner(System.in);
         String newPrice = entry.nextLine();
         float price = Float.parseFloat(newPrice);
 
-        book.setPrice(price);
+        bookEntity.setPrice(price);
 
         System.out.println("Zmianiono cenę książki");
         printContinue();
@@ -115,20 +114,20 @@ public class AdminService {
         String idNew = entry.nextLine();
         int id = Integer.parseInt(idNew);
 
-        Book book = bookRepository.getBook(id);
+        BookEntity bookEntity = bookRepository.getBook(id);
 
-        if (book == null) {
+        if (bookEntity == null) {
             System.out.println("Nie znaleziono książki o takim tytule");
             printContinue();
             return;
         }
 
-        System.out.println("Aktualna ilość książek to: " + book.getQuantity() + " Podaj nową ilość książek: ");
+        System.out.println("Aktualna ilość książek to: " + bookEntity.getQuantity() + " Podaj nową ilość książek: ");
         entry = new Scanner(System.in);
         String newQuantity = entry.nextLine();
         int quantity = Integer.parseInt(newQuantity);
 
-        book.setQuantity(quantity);
+        bookEntity.setQuantity(quantity);
 
         System.out.println("Zmianiono ilość książek");
         printContinue();
