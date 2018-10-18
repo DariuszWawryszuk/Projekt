@@ -1,7 +1,7 @@
 package com.Darek.Programik.model;
 
 import javax.persistence.*;
-
+// CODEREV nie powinno się używać importów z * popraw w IDE
 @Entity
 public class BookInBasket extends BaseEntity {
 
