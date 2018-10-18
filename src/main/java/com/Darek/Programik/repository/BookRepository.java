@@ -17,7 +17,7 @@ public class BookRepository  {
     public BookRepository(){
 
     }
-
+// CODE REV za dużo enterów, konstruktor niepotrzebny, nie masz wszędzie transactional -> być może @Repository to zapewnia więc albo dajemy wszędzie albo nie dajemy w ogóle
 
     @Transactional
     public void createBook(String title, String author, String type, int quantity, float price){
