@@ -26,7 +26,7 @@ public class UserService {
 
     @Autowired
     Tools tools;
-
+    // CODEREV prywatne pola i za dużo enterów na górze
     public void addToBasket() {
         System.out.println("Podaj ID ksiązki którą chcesz dodać do koszyka tralala");
 
@@ -38,6 +38,7 @@ public class UserService {
         if (book == null) {
             System.out.println("Nie znaleziono książki o takim ID");
             return;
+            // CODEREV tak nie robimy :) if else
         }
 
         System.out.println("Podaj ilość książek jakie chcesz dodać");
@@ -55,6 +56,7 @@ public class UserService {
         book.calculatingQuantity(quantity);
 
         tools.printContinue();
+        // CODEREV tutaj też nie trzeba walić tymi enterami między liniami
     }
 
     public void deleteFromBasket() {
@@ -68,6 +70,7 @@ public class UserService {
         if (bookInBasket == null) {
             System.out.println("Nie znaleziono książki o takim ID");
             return;
+            // CODEREV też bez returna w metodzie void
         }
 
 
@@ -79,6 +82,7 @@ public class UserService {
 
 
         tools.printContinue();
+        // CODEREV za dużo enterów
     }
 
 
@@ -88,9 +92,11 @@ public class UserService {
         if (basket.size() < 1) {
             System.out.println("Narazie nie ma żadnej ksiazki");
         } else {
+            // CODEREV tutaj też można małą metodkę zrobić - bo wyraźnie jest wypisanie zawartości koszyk
             System.out.println();
             for (BookInBasket wynik : basket) {
                 System.out.println(wynik);
+                // CODEREV a to nie jest wynik tylko book ?
             }
         System.out.println("Cena za cały koszyk: " + totalPrice);
         }
@@ -107,6 +113,7 @@ public class UserService {
         if (bookInBasket == null) {
             System.out.println("Nie znaleziono książki o takim ID");
             return;
+            // CODEREV nie robi się returnow w void
         }
 
         long idBook = bookInBasket.getIdBook(id);//pobieram IDKsiążki po ID koszyka, aby potem stworzyć instancje książki po tym ID
@@ -119,6 +126,7 @@ public class UserService {
         System.out.println("Cena: " + book.getPrice());
         float totalPriceBook = (bookInBasket.getPrice()) * (bookInBasket.getQuantity());
         System.out.println("Łączna cena za książki: " + totalPriceBook);
+        // CODEREv to można dać do metody np. printBookInformation ?
         tools.printContinue();
     }
 
@@ -126,6 +134,7 @@ public class UserService {
     public Float totalPrice(List<BookInBasket> basket){
         float totalPrice = 0;
         for (BookInBasket wynik : basket) {
+            // CODEREV to nie wynik tylko book albo bookInBasket
             totalPrice = wynik.getPrice() * wynik.getQuantity() + totalPrice ;
         }
       return totalPrice;
