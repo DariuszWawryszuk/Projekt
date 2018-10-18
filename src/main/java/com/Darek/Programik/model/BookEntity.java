@@ -4,13 +4,7 @@ package com.Darek.Programik.model;
 import javax.persistence.Entity;
 
 @Entity(name = "Book")
-public class BookEntity
-        extends NewId
-{
-
-//    @Id
-//    @GeneratedValue(strategy = GenerationType.AUTO)
-//    private long id;
+public class BookEntity extends BaseEntity {
 
     private String title;
     private String author;

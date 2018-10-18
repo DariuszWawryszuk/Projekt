@@ -2,6 +2,7 @@ package com.Darek.Programik.service;
 
 import com.Darek.Programik.model.BookEntity;
 import com.Darek.Programik.repository.BookRepository;
+import com.Darek.Programik.utils.Tools;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,34 +15,37 @@ public class AdminService {
     @Autowired
     BookRepository bookRepository;
 
+    @Autowired
+    Tools tools;
+
     public void addBook() {
         System.out.println("Podaj tytuł ksiązki");
         Scanner entry = new Scanner(System.in);
-        String tytul = entry.nextLine();
+        String title = entry.nextLine();
         System.out.println("Podaj autora ksiązki");
         entry = new Scanner(System.in);
-        String autor = entry.nextLine();
+        String author = entry.nextLine();
         System.out.println("Podaj rodzaj ksiązki");
         entry = new Scanner(System.in);
-        String rodzaj = entry.nextLine();
+        String type = entry.nextLine();
         System.out.println("Podaj ilość książek");
         entry = new Scanner(System.in);
-        String ilosc = entry.nextLine();
+        String quantity = entry.nextLine();
         System.out.println("Podaj cenę książki");
         entry = new Scanner(System.in);
         String strPrice = entry.nextLine();
 
-        addBookToCollection(tytul, autor, rodzaj, ilosc, strPrice);
+        addBookToCollection(title, author, type, quantity, strPrice);
 
-        printContinue();
+        tools.printContinue();
     }
 
-    private void addBookToCollection(String tytul, String autor, String rodzaj,
-                                     String ilosc, String strPrice) {
+    private void addBookToCollection(String title, String author, String type,
+                                     String quantity, String strPrice) {
         try {
-            int iloscInt = Integer.parseInt(ilosc);
+            int quantityInt = Integer.parseInt(quantity);
             float price = Float.parseFloat(strPrice);
-            bookRepository.createBook(tytul, autor, rodzaj,iloscInt,price);
+            bookRepository.createBook(title, author, type,quantityInt,price);
 
             System.out.println("Książka została dodana");
         } catch (Exception e) {
@@ -52,90 +56,76 @@ public class AdminService {
 
     public void deleteBook() {
         System.out.println("Podaj ID ksiązki którą chcesz usunąć");
-//        Scanner entry = new Scanner(System.in);
-//        String idNew = entry.nextLine();
-//        int id = Integer.parseInt(idNew);
 
         Scanner entry = new Scanner(System.in);
-        int id = entry.nextInt();
+        long id = entry.nextInt();
 
-        BookEntity ksiazka = bookRepository.getBookById(id);
+        BookEntity book = bookRepository.getBookById(id);
 
-        if (ksiazka == null) {
+        if (book == null) {
             System.out.println("Nie znaleziono książki o takim tytule");
-            printContinue();
+            tools.printContinue();
             return;
         }
-        bookRepository.deleteBook(ksiazka);
+        bookRepository.deleteBook(book);
         System.out.println("Usunięto książkę");
 
-        printContinue();
+        tools.printContinue();
     }
 
 
     public void showBookList() {
-        List<BookEntity> zbior = bookRepository.findAllBooks();
-        if (zbior.size() < 1) {
+        List<BookEntity> books = bookRepository.findAllBooks();
+        if (books.size() < 1) {
             System.out.println("Narazie nie ma żadnej ksiazki");
         } else {
             System.out.println();
-            for (BookEntity wynik : zbior)
-                System.out.println(wynik);
+            for (BookEntity result : books)
+                System.out.println(result);
             }
-        printContinue();
+        tools.printContinue();
     }
 
     public void changePrice(){
         System.out.println("Podaj ID ksiązki dla której chcesz zmeinić cenę");
-//        Scanner entry = new Scanner(System.in);
-//        String idNew = entry.nextLine();
-//        int id = Integer.parseInt(idNew);
+
         Scanner entry = new Scanner(System.in);
-        int id = entry.nextInt();
+        long id = entry.nextInt();
 
         BookEntity bookEntity = bookRepository.getBookById(id);
 
         if (bookEntity == null) {
             System.out.println("Nie znaleziono książki o takim tytule");
-            printContinue();
+            tools.printContinue();
             return;
         }
 
         System.out.println("Aktualna cena książki to: " + bookEntity.getPrice() + " Podaj nową cenę książki: ");
-//        entry = new Scanner(System.in);
-//        String newPrice = entry.nextLine();
-//        float price = Float.parseFloat(newPrice);
 
         Scanner newPrice = new Scanner(System.in);
-        int price = newPrice.nextInt();
+        float price = newPrice.nextFloat();
 
         bookEntity.setPrice(price);
 
         System.out.println("Zmianiono cenę książki");
-        printContinue();
+        tools.printContinue();
     }
 
     public void changeQuantity(){
         System.out.println("Podaj ID ksiązki dla której chcesz zmeinić ilość");
-//        Scanner entry = new Scanner(System.in);
-//        String idNew = entry.nextLine();
-//        int id = Integer.parseInt(idNew);
 
         Scanner entry = new Scanner(System.in);
-        int id = entry.nextInt();
+        long id = entry.nextInt();
 
         BookEntity bookEntity = bookRepository.getBookById(id);
 
         if (bookEntity == null) {
             System.out.println("Nie znaleziono książki o takim tytule");
-            printContinue();
+            tools.printContinue();
             return;
         }
 
         System.out.println("Aktualna ilość książek to: " + bookEntity.getQuantity() + " Podaj nową ilość książek: ");
-//        entry = new Scanner(System.in);
-//        String newQuantity = entry.nextLine();
-//        int quantity = Integer.parseInt(newQuantity);
 
         Scanner newQuantity = new Scanner(System.in);
         int quantity = newQuantity.nextInt();
@@ -143,12 +133,7 @@ public class AdminService {
         bookEntity.setQuantity(quantity);
 
         System.out.println("Zmianiono ilość książek");
-        printContinue();
-    }
-    private void printContinue() {
-        System.out.println("Aby kontynuowac wcisnij dowolny przycisk");
-        Scanner scanner = new Scanner(System.in);
-        scanner.nextLine();
+        tools.printContinue();
     }
 
 }

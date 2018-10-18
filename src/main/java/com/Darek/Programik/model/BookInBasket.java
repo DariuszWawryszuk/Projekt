@@ -3,17 +3,9 @@ package com.Darek.Programik.model;
 import javax.persistence.*;
 
 @Entity
-public class BookInBasket
-        extends NewId
-{
+public class BookInBasket extends BaseEntity {
 
-
-//    @Id
-//    @GeneratedValue(strategy = GenerationType.AUTO)
-//    private long id;
-
-    private int idBook;
-    private String title;
+    private long idBook;
     private int quantity;
     private  float price;
 
@@ -21,22 +13,17 @@ public class BookInBasket
 
     }
 
-    public BookInBasket(int idBook, String title, int quantity, float price) {
+    public BookInBasket(long idBook, int quantity, float price) {
         this.idBook = idBook;
-        this.title = title;
         this.quantity = quantity;
         this.price = price;
-    }
-
-    public String getTitle() {
-        return title;
     }
 
     public int getQuantity() {
         return quantity;
     }
 
-    public int getIdBook(Integer id) {
+    public long getIdBook(long id) {
         return idBook;
     }
 
@@ -49,7 +36,6 @@ public class BookInBasket
         return
                 "id: " + getId() +
                 ", idBook: " + idBook +
-                ", title: '" + title + '\'' +
                 ", quantity: " + quantity +
                 ", price: " + price +
                 '}';

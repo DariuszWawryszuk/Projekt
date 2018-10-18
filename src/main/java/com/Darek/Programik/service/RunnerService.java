@@ -1,7 +1,6 @@
 package com.Darek.Programik.service;
 
 
-import com.Darek.Programik.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,9 +10,6 @@ import java.util.Scanner;
 
 @Service
 public class RunnerService {
-
-    @Autowired
-    BookRepository bookRepository;
 
     @Autowired
     AdminService adminService;
@@ -33,12 +29,12 @@ public class RunnerService {
         System.out.println("Gdzie sie chcesz zalogować");
         System.out.println("1 - Administrator");
         System.out.println("2 - Użytkownik");
-        Scanner klawiatura = new Scanner(System.in);
-        int wyborMenu = klawiatura.nextInt();
+        Scanner enter = new Scanner(System.in);
+        int choiceMenu = enter.nextInt();
 
-        if (wyborMenu == 1) {
+        if (choiceMenu == 1) {
             handleAdmin();
-        } else if (wyborMenu == 2) {
+        } else if (choiceMenu == 2) {
             handleUser();
         } else {
             System.exit(0);
@@ -47,8 +43,8 @@ public class RunnerService {
 
 
     private void handleUser() throws IOException {
-        boolean wyjscie = true;
-        while (wyjscie) {
+        boolean exit = true;
+        while (exit) {
 
             System.out.println("Witaj w Swoim koszyku");
             System.out.println("Wybież co chcesz zrobić");
@@ -59,20 +55,20 @@ public class RunnerService {
             System.out.println("5 - Wyświetl szczegółowe dane wybranej książki");
             System.out.println("0 - Wyjście z programu");
             System.out.println("Wpisz opcję i wciśniej Enter");
-            Scanner klawiaturaWybor = new Scanner(System.in);
-            int wybor = klawiaturaWybor.nextInt();
+            Scanner enter = new Scanner(System.in);
+            int choice = enter.nextInt();
             try {
-                switch (wybor) {
+                switch (choice) {
                     case 1: {
                         adminService.showBookList();
                         break;
                     }
                     case 2: {
-                        userService.dodanieKoszyk();
+                        userService.addToBasket();
                         break;
                     }
                     case 3: {
-                        userService.usuniecieKszyk();
+                        userService.deleteFromBasket();
                         break;
                     }
                     case 4: {
@@ -80,10 +76,10 @@ public class RunnerService {
                         break;
                     }
                     case 5:
-                        userService.daneSzczzegolowe();
+                        userService.specificInformation();
                         break;
                     case 0:
-                        wyjscie = false;
+                        exit = false;
                         break;
                 }
             } catch (Exception e) {
@@ -94,8 +90,8 @@ public class RunnerService {
     }
 
     private void handleAdmin() throws IOException {
-        boolean wyjscie = true;
-        while (wyjscie) {
+        boolean exit = true;
+        while (exit) {
 
             System.out.println("Wybierz co chcesz zrobić");
             System.out.println("1 - Dodaj nową ksiązkę");
@@ -105,10 +101,10 @@ public class RunnerService {
             System.out.println("0 - Wyjście z programu");
             System.out.println("Wpisz opcję i wciśniej Enter");
 
-            Scanner klawiaturaWybor = new Scanner(System.in);
-            int wybor = klawiaturaWybor.nextInt();
+            Scanner enter = new Scanner(System.in);
+            int choice = enter.nextInt();
 
-            switch (wybor) {
+            switch (choice) {
                 case 1: {
                     adminService.addBook();
                     break;
@@ -126,15 +122,15 @@ public class RunnerService {
                     break;
                 }
                 case 0:
-                    wyjscie = false;
+                    exit = false;
                     break;
             }
         }
     }
 
     private void handleBook() throws IOException {
-        boolean wyjscie = true;
-        while (wyjscie) {
+        boolean exit = true;
+        while (exit) {
 
             System.out.println("Wybierz co chcesz zrobić");
             System.out.println("1 - Zmień cenę książki");
@@ -142,11 +138,10 @@ public class RunnerService {
             System.out.println("0 - Wyjście z programu");
             System.out.println("Wpisz opcję i wciśniej Enter");
 
-            Scanner klawiaturaWybor = new Scanner(System.in);
+            Scanner enter = new Scanner(System.in);
+            int choice = enter.nextInt();
 
-            int wybor = klawiaturaWybor.nextInt();
-
-            switch (wybor) {
+            switch (choice) {
                 case 1: {
                     adminService.changePrice();
                     break;
@@ -156,7 +151,7 @@ public class RunnerService {
                     break;
                 }
                 case 0:
-                    wyjscie = false;
+                    exit = false;
                     break;
             }
         }

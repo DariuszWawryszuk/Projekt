@@ -37,7 +37,7 @@ public class BookRepository  {
        return em.createQuery("from Book", BookEntity.class).getResultList();
     }
 
-    public BookEntity getBookById(int id){
+    public BookEntity getBookById(long id){
 
         return em.find(BookEntity.class,id);
     }

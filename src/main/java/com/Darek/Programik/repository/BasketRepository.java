@@ -19,16 +19,15 @@ public class BasketRepository {
     BookRepository bookRepository;
 
     @Transactional
-    public void addBookToBasket(int id, int ilosc){
-        String title = bookRepository.getBookById(id).getTitle();
+    public void addBookToBasket(long id, int ilosc){
         Float price = bookRepository.getBookById(id).getPrice();
-        BookInBasket bookInBasket = new BookInBasket(id,title,ilosc,price);
+        BookInBasket bookInBasket = new BookInBasket(id,ilosc,price);
 
         em.persist(bookInBasket);
 
     }
 
-    public BookInBasket getBook(Integer id){
+    public BookInBasket getBook(long id){
         return em.find(BookInBasket.class,id);
     }
 
