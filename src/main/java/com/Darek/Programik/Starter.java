@@ -13,12 +13,12 @@ public class Starter implements CommandLineRunner {
 
     @Autowired
     RunnerService runnerService;
-
+    // CODEREV private? obier zmienne
     @Autowired
     BookRepository bookRepository;
 
     public void run(String... strings) throws Exception{
-
+        // CODEREV a po co w argumencie stringi?
         runnerService.run();
 
 
