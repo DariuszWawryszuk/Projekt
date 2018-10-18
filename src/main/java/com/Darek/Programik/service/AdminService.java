@@ -34,6 +34,7 @@ public class AdminService {
         System.out.println("Podaj cenę książki");
         entry = new Scanner(System.in);
         String strPrice = entry.nextLine();
+        // CODEREV może tutaj pomysleć o jakimś serwisie który bedzie własnie używał scannera i tworzył ksiązkę
 
         addBookToCollection(title, author, type, quantity, strPrice);
 
