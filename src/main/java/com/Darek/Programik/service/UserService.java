@@ -1,19 +1,22 @@
 package com.Darek.Programik.service;
 
-import com.Darek.Programik.model.Book;
+import com.Darek.Programik.model.BookEntity;
 
 import com.Darek.Programik.model.BookInBasket;
 import com.Darek.Programik.repository.BasketRepository;
 import com.Darek.Programik.repository.BookRepository;
+import com.Darek.Programik.utils.Tools;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
 
-import java.util.HashMap;
+import java.util.List;
 import java.util.Scanner;
 
-@Repository
+@Service
 public class UserService {
+
+
 
     @Autowired
     BookRepository bookRepository;
@@ -21,41 +24,44 @@ public class UserService {
     @Autowired
     BasketRepository basketRepository;
 
-    public void dodanieKoszyk() {
-        System.out.println("Podaj ID ksiązki którą chcesz dodać do koszyka");
+    @Autowired
+    Tools tools;
+
+    public void addToBasket() {
+        System.out.println("Podaj ID ksiązki którą chcesz dodać do koszyka tralala");
+
         Scanner entry = new Scanner(System.in);
-        String idNew = entry.nextLine();
-        int id = Integer.parseInt(idNew);
+        long id = entry.nextInt();
 
-        Book ksiazka = bookRepository.getBook(id);
+        BookEntity book = bookRepository.getBookById(id);
 
-        if (ksiazka == null) {
+        if (book == null) {
             System.out.println("Nie znaleziono książki o takim ID");
             return;
         }
 
         System.out.println("Podaj ilość książek jakie chcesz dodać");
-        Scanner entry1 = new Scanner(System.in);
-        String iloscKsiazek = entry1.nextLine();
 
-        int ilosc = Integer.parseInt(iloscKsiazek);
-        if (ksiazka.getQuantity() <= ilosc) {
+        Scanner entry1 = new Scanner(System.in);
+        int quantity = entry1.nextInt();
+
+        if (book.getQuantity() <= quantity) {
             System.out.println("Za mało książek w magazynie");
             return;
         }
 
-        basketRepository.addBookToBasket(id, ilosc);
+        basketRepository.addBookToBasket(id, quantity);
 
-        ksiazka.calculatingQuantity(ilosc);
+        book.calculatingQuantity(quantity);
 
-        printContinue();
+        tools.printContinue();
     }
 
-    public void usuniecieKszyk() {
+    public void deleteFromBasket() {
         System.out.println("Podaj ID ksiązki którą chcesz usunąć z  koszyka");
+
         Scanner entry = new Scanner(System.in);
-        String idNew = entry.nextLine();
-        int id = Integer.parseInt(idNew);
+        long id = entry.nextInt();
 
         BookInBasket bookInBasket = basketRepository.getBook(id);
 
@@ -65,36 +71,36 @@ public class UserService {
         }
 
 
-        Integer idBook = bookInBasket.getIdBook(id);
-        Book ksiazka = bookRepository.getBook(idBook);
-        ksiazka.addingQuantity(bookInBasket.getQuantity());
+        long idBook = bookInBasket.getIdBook(id); // pobieram Id Książki z koszyka
+        BookEntity book = bookRepository.getBookById(idBook); // tworzę instancję ksiązki
+        book.addingQuantity(bookInBasket.getQuantity()); // dodaję ilośc książek do magazynu
 
-        basketRepository.deleteFromBasket(id);
+        basketRepository.deleteFromBasket(bookInBasket);
 
 
-        printContinue();
+        tools.printContinue();
     }
 
 
-//    public void showBookList() {
-//        HashMap<Integer, BookInBasket> koszyk = basketRepository.findAllBooks();
-//        float totalPrice = totalPrice(koszyk);
-//        if (koszyk.size() < 1) {
-//            System.out.println("Narazie nie ma żadnej ksiazki");
-//        } else {
-//            System.out.println();
-//            for (BookInBasket wynik : koszyk.values()) {
-//                System.out.println("ID " + wynik.getId() + " Tytuł: " + wynik.getTitle() + " Ilość: " + wynik.getQuantity());
-//            }
-//        System.out.println("Cena za cały koszyk: " + totalPrice);
-//        }
-//    }
+    public void showBookList() {
+        List<BookInBasket> basket = basketRepository.findAllBooks();
+        float totalPrice = totalPrice(basket);
+        if (basket.size() < 1) {
+            System.out.println("Narazie nie ma żadnej ksiazki");
+        } else {
+            System.out.println();
+            for (BookInBasket wynik : basket) {
+                System.out.println(wynik);
+            }
+        System.out.println("Cena za cały koszyk: " + totalPrice);
+        }
+    }
 
-    public void daneSzczzegolowe() {
+    public void specificInformation() {
         System.out.println("Podaj ID książki ktorej chcesz poznać danettt:");
-        Scanner tr = new Scanner(System.in);
-        String idNew = tr.nextLine();
-        int id = Integer.parseInt(idNew);
+
+        Scanner entry = new Scanner(System.in);
+        int id = entry.nextInt();
 
         BookInBasket bookInBasket = basketRepository.getBook(id);
 
@@ -103,28 +109,23 @@ public class UserService {
             return;
         }
 
-        Integer idBook = bookInBasket.getIdBook(id);//pobieram IDKsiążki po ID koszyka, aby ptem stworzyćinstancje książki po tym ID
-        Book ksiazka = bookRepository.getBook(idBook);
+        long idBook = bookInBasket.getIdBook(id);//pobieram IDKsiążki po ID koszyka, aby potem stworzyć instancje książki po tym ID
+        BookEntity book = bookRepository.getBookById(idBook);
 
-        System.out.println("Tytuł: " + bookInBasket.getTitle());
-        System.out.println("Autor: " + ksiazka.getAuthor());
-        System.out.println("Rodzaj: " + ksiazka.getType());
+        System.out.println("Tytuł: " + book.getTitle());
+        System.out.println("Autor: " + book.getAuthor());
+        System.out.println("Rodzaj: " + book.getType());
         System.out.println("Ilość: " + bookInBasket.getQuantity());
-        System.out.println("Cena: " + ksiazka.getPrice());
+        System.out.println("Cena: " + book.getPrice());
         float totalPriceBook = (bookInBasket.getPrice()) * (bookInBasket.getQuantity());
         System.out.println("Łączna cena za książki: " + totalPriceBook);
-        printContinue();
+        tools.printContinue();
     }
 
-    private void printContinue() {
-        System.out.println("Aby kontynuowac wcisnij dowolny przycisk");
-        Scanner scanner = new Scanner(System.in);
-        scanner.nextLine();
-    }
 
-    public Float totalPrice(HashMap<Integer,BookInBasket> basket){
+    public Float totalPrice(List<BookInBasket> basket){
         float totalPrice = 0;
-        for (BookInBasket wynik : basket.values()) {
+        for (BookInBasket wynik : basket) {
             totalPrice = wynik.getPrice() * wynik.getQuantity() + totalPrice ;
         }
       return totalPrice;

@@ -7,9 +7,7 @@ import org.springframework.stereotype.Repository;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Repository
 public class BasketRepository {
@@ -20,24 +18,21 @@ public class BasketRepository {
     @Autowired
     BookRepository bookRepository;
 
-    private Map<Integer, BookInBasket> basket = new HashMap();
-
     @Transactional
-    public void addBookToBasket(int id, int ilosc){
-        String title = bookRepository.getBook(id).getTitle();
-        Float price = bookRepository.getBook(id).getPrice();
-        BookInBasket bookInBasket = new BookInBasket(id,title,ilosc,price);
+    public void addBookToBasket(long id, int ilosc){
+        Float price = bookRepository.getBookById(id).getPrice();
+        BookInBasket bookInBasket = new BookInBasket(id,ilosc,price);
 
         em.persist(bookInBasket);
 
     }
 
-    public BookInBasket getBook(Integer id){
+    public BookInBasket getBook(long id){
         return em.find(BookInBasket.class,id);
     }
 
     @Transactional
-    public void deleteFromBasket(int ind) { em.remove(ind);}
+    public void deleteFromBasket(BookInBasket bookInBasket) { em.remove(bookInBasket);}
 
 
     public List<BookInBasket> findAllBooks() {
