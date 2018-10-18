@@ -12,7 +12,6 @@ public class InitialData {
     @Autowired
     BookRepository bookRepository;
 
-
     @PostConstruct
     public void initialBook (){
 

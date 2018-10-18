@@ -22,9 +22,7 @@ public class BasketRepository {
     public void addBookToBasket(long id, int ilosc){
         Float price = bookRepository.getBookById(id).getPrice();
         BookInBasket bookInBasket = new BookInBasket(id,ilosc,price);
-
         em.persist(bookInBasket);
-
     }
 
     public BookInBasket getBook(long id){
@@ -36,7 +34,6 @@ public class BasketRepository {
 
 
     public List<BookInBasket> findAllBooks() {
-
         return em.createQuery("from BookInBasket", BookInBasket.class).getResultList();
     }
 

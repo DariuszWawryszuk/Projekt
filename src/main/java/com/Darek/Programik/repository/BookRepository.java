@@ -14,15 +14,11 @@ public class BookRepository  {
     @PersistenceContext
     private EntityManager em;
 
-    public BookRepository(){
-
-    }
 // CODE REV za dużo enterów, konstruktor niepotrzebny, nie masz wszędzie transactional -> być może @Repository to zapewnia więc albo dajemy wszędzie albo nie dajemy w ogóle
 
     @Transactional
     public void createBook(String title, String author, String type, int quantity, float price){
         BookEntity bookEntity = new BookEntity(title, author, type, quantity, price);
-
         em.persist(bookEntity);
     }
 
@@ -31,14 +27,11 @@ public class BookRepository  {
         em.remove(bookEntity);
     }
 
-
     public List<BookEntity> findAllBooks() {
-
        return em.createQuery("from Book", BookEntity.class).getResultList();
     }
 
     public BookEntity getBookById(long id){
-
         return em.find(BookEntity.class,id);
     }
 }

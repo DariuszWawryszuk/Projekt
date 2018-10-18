@@ -12,7 +12,6 @@ public class BookInBasket extends BaseEntity {
     public BookInBasket(){
 
     }
-
     public BookInBasket(long idBook, int quantity, float price) {
         this.idBook = idBook;
         this.quantity = quantity;

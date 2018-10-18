@@ -19,7 +19,6 @@ public class RunnerService {
 
     public void run() throws IOException {
 
-
         while (true) {
             handleMenu();
         }
@@ -40,7 +39,6 @@ public class RunnerService {
             System.exit(0);
         }
     }
-
 
     private void handleUser() throws IOException {
         boolean exit = true;

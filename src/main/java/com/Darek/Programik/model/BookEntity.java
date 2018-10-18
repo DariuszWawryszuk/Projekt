@@ -1,6 +1,5 @@
 package com.Darek.Programik.model;
 
-
 import javax.persistence.Entity;
 
 @Entity(name = "Book")
