@@ -1,7 +1,7 @@
 package com.Darek.Programik.model;
 
-import javax.persistence.*;
-// CODEREV nie powinno się używać importów z * popraw w IDE
+import javax.persistence.Entity;
+
 @Entity
 public class BookInBasket extends BaseEntity {
 
@@ -10,8 +10,8 @@ public class BookInBasket extends BaseEntity {
     private  float price;
 
     public BookInBasket(){
-
     }
+
     public BookInBasket(long idBook, int quantity, float price) {
         this.idBook = idBook;
         this.quantity = quantity;

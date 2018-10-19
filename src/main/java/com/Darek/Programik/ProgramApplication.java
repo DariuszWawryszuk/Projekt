@@ -4,9 +4,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class ProgramikApplication {
-	// CODEREV popraw nazwę klasy
+public class ProgramApplication {
 	public static void main(String[] args) {
-		SpringApplication.run(ProgramikApplication.class, args);
+		SpringApplication.run(ProgramApplication.class, args);
 	}
 }

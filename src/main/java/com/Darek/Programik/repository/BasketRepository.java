@@ -30,7 +30,8 @@ public class BasketRepository {
     }
 
     @Transactional
-    public void deleteFromBasket(BookInBasket bookInBasket) { em.remove(bookInBasket);}
+    public void deleteFromBasket(BookInBasket bookInBasket) {
+        em.remove(em.contains(bookInBasket) ? bookInBasket : em.merge(bookInBasket));}
 
 
     public List<BookInBasket> findAllBooks() {

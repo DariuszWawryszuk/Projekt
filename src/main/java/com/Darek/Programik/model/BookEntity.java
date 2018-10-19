@@ -22,28 +22,13 @@ public class BookEntity extends BaseEntity {
         this.price = price;
     }
 
-    public int calculatingQuantity(int x)
-    {
-        this.quantity = quantity - x;
-
-        return quantity;
-    }
-    public int addingQuantity(int x)
-    {
-        this.quantity = quantity + x;
-
-        return quantity;
-    }
-
     public String getTitle() {
         return title;
     }
 
-
     public String getAuthor() {
         return author;
     }
-
 
     public String getType() {
         return type;

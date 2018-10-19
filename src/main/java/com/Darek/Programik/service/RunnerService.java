@@ -12,10 +12,10 @@ import java.util.Scanner;
 public class RunnerService {
 
     @Autowired
-    AdminService adminService;
+    private AdminService adminService;
 
     @Autowired
-    UserService userService;
+    private UserService userService;
 
     public void run() throws IOException {
 
@@ -81,7 +81,7 @@ public class RunnerService {
                         break;
                 }
             } catch (Exception e) {
-                System.out.println("Jako wybór trzeba podać liczbę tralala");
+                System.out.println("Jako wybór trzeba podać liczbę trarara");
             }
 
         }

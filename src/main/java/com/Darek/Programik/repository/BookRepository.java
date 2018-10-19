@@ -24,7 +24,7 @@ public class BookRepository  {
 
     @Transactional
     public void deleteBook(BookEntity bookEntity){
-        em.remove(bookEntity);
+        em.remove(em.contains(bookEntity) ? bookEntity : em.merge(bookEntity));
     }
 
     public List<BookEntity> findAllBooks() {
@@ -34,4 +34,6 @@ public class BookRepository  {
     public BookEntity getBookById(long id){
         return em.find(BookEntity.class,id);
     }
+    @Transactional
+    public void updateBook(long id, BookEntity bookEntity){ em.merge(bookEntity);}
 }
