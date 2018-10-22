@@ -50,6 +50,10 @@ public class BookEntity extends BaseEntity {
         this.price = price;
     }
 
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
     @Override
     public String toString() {
         return
