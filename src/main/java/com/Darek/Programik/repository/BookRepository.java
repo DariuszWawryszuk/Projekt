@@ -36,4 +36,9 @@ public class BookRepository  {
     }
     @Transactional
     public void updateBook(long id, BookEntity bookEntity){ em.merge(bookEntity);}
+
+    @Transactional
+    public void createBook(BookEntity bookEntity) {
+        em.persist(bookEntity);
+    }
 }

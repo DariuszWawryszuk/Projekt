@@ -30,6 +30,22 @@ public class BookInBasket extends BaseEntity {
         return price;
     }
 
+    public void setIdBook(long idBook) {
+        this.idBook = idBook;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public void setPrice(float price) {
+        this.price = price;
+    }
+
+    public long getIdBook() {
+        return idBook;
+    }
+
     @Override
     public String toString() {
         return

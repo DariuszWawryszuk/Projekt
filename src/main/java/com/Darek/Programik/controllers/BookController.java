@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,4 +24,18 @@ public class BookController {
         model.addAttribute("books",allBooks);
         return "books";
     }
+
+    @RequestMapping("/newbook")
+    public String crateBook (Model model){
+        model.addAttribute("book", new BookEntity());
+        return "bookform";
+
+    }
+
+    @RequestMapping(value = "/books", method = RequestMethod.POST)
+    public String saveBooks(BookEntity bookEntity){
+        bookService.saveBook(bookEntity);
+        return "redirect:/books";
+    }
+
 }

@@ -7,35 +7,29 @@
 
     <script th:src="@{/webjars/jquery/3.3.1-1/jquery.min.js}"></script>
     <script th:src="@{/webjars/bootstrap/4.1.3/js/bootstrap.min.js}"></script>
-
 </head>
-
 <body>
 <div class="container">
 <table class="table">
     <thead>
     <tr>
-        <td>Tytuł</td>
-        <td>Autor</td>
-        <td>Rodzaj</td>
+        <td>ID</td>
         <td>Ilość</td>
-        <td>Cena</td>
+        <td>Ilość</td>
     </tr>
     </thead>
-    <tbody th:each=" book : ${books}">
+    <tbody th:each=" bookInBasket : ${basket}">
     <tr>
-        <td th:text="${book.title}"></td>
-        <td th:text="${book.author}"></td>
-        <td th:text="${book.type}"></td>
-        <td th:text="${book.quantity}"></td>
-        <td th:text="${book.price}"></td>
+        <td th:text="${bookInBasket.idBook}"></td>
+        <td th:text="${bookInBasket.quantity}"></td>
+        <td th:text="${bookInBasket.price}"></td>
     </tr>
     </tbody>
 </table>
 
-    <div class="row">
-        <a href="/newbook">Dodaj nową książkę do magazynu</a>
-    </div>
+<div class="row">
+    <a href="/newbookinbasket">Dodaj nową książkę do koszyka</a>
+</div>
 </div>
 </body>
 </html>

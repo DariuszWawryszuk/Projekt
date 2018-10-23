@@ -17,4 +17,9 @@ public class BookService {
     public List<BookEntity>  findAllBooks() {
         return new ArrayList<>(bookRepository.findAllBooks());
     }
+
+
+    public void saveBook(BookEntity bookEntity) {
+        bookRepository.createBook(bookEntity);
+    }
 }
