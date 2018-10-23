@@ -12,9 +12,11 @@
 
 <body>
 <div class="container">
+    <H2>Książki</H2>
 <table class="table">
     <thead>
     <tr>
+        <td>ID</td>
         <td>Tytuł</td>
         <td>Autor</td>
         <td>Rodzaj</td>
@@ -24,6 +26,8 @@
     </thead>
     <tbody th:each=" book : ${books}">
     <tr>
+
+        <td th:text="${book.id}"></td>
         <td th:text="${book.title}"></td>
         <td th:text="${book.author}"></td>
         <td th:text="${book.type}"></td>
@@ -35,6 +39,10 @@
 
     <div class="row">
         <a href="/newbook">Dodaj nową książkę do magazynu</a>
+    </div>
+
+    <div class="row">
+        <a href="/newbookinbasket">Dodaj nową książkę do koszyka</a>
     </div>
 </div>
 </body>

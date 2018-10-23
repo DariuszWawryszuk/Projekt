@@ -34,6 +34,7 @@ public class BookRepository  {
     public BookEntity getBookById(long id){
         return em.find(BookEntity.class,id);
     }
+
     @Transactional
     public void updateBook(long id, BookEntity bookEntity){ em.merge(bookEntity);}
 

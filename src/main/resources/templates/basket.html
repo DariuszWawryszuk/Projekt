@@ -10,12 +10,14 @@
 </head>
 <body>
 <div class="container">
+    <H2>Koszyk</H2>
 <table class="table">
     <thead>
     <tr>
         <td>ID</td>
         <td>Ilość</td>
-        <td>Ilość</td>
+        <td>Cena</td>
+        <td></td>
     </tr>
     </thead>
     <tbody th:each=" bookInBasket : ${basket}">
@@ -23,6 +25,7 @@
         <td th:text="${bookInBasket.idBook}"></td>
         <td th:text="${bookInBasket.quantity}"></td>
         <td th:text="${bookInBasket.price}"></td>
+        <td><a th:href="${'/book?id='+bookInBasket.id}">Podgląd</a> </td>
     </tr>
     </tbody>
 </table>
@@ -30,6 +33,9 @@
 <div class="row">
     <a href="/newbookinbasket">Dodaj nową książkę do koszyka</a>
 </div>
+    <div class="row">
+        <a href="/books">Sprawdz jakie książki możesz dodac do koszyka</a>
+    </div>
 </div>
 </body>
 </html>

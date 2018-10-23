@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -19,21 +20,22 @@ public class BasketController {
     BasketService basketService;
 
     @RequestMapping("/basket")
-    public String getBasket(Model model){
-        List<BookInBasket> allBasket =  basketService.findAllBooks();
-        model.addAttribute("basket",allBasket);
+    public String getBasket(Model model) {
+        List<BookInBasket> allBasket = basketService.findAllBooks();
+        model.addAttribute("basket", allBasket);
         return "basket";
     }
 
     @RequestMapping("/newbookinbasket")
-    public String crateBook (Model model){
+    public String crateBook(Model model) {
         model.addAttribute("bookinbasket", new BookInBasket());
         return "basketform";
     }
 
     @RequestMapping(value = "/basket", method = RequestMethod.POST)
-    public String saveBookInBasket(BookInBasket bookInBasket){
+    public String saveBookInBasket(BookInBasket bookInBasket) {
         basketService.saveBook(bookInBasket);
         return "redirect:/basket";
     }
+
 }

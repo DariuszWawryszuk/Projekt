@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,6 +37,13 @@ public class BookController {
     public String saveBooks(BookEntity bookEntity){
         bookService.saveBook(bookEntity);
         return "redirect:/books";
+    }
+    @RequestMapping("/book")
+    public String getBook(@RequestParam("id") Long id, Model model) {
+        BookEntity bookEntity = bookService.getBook(id);
+        model.addAttribute("book",bookEntity);
+        return "book";
+
     }
 
 }
