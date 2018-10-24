@@ -30,4 +30,13 @@ public class BookService {
         long idBook = basketRepository.getBook(id).getIdBook();
         return bookRepository.getBookById(idBook);
     }
+
+    public void deleteBook(Long id) {
+        BookEntity bookEntity = bookRepository.getBookById(id);
+        bookRepository.deleteBook(bookEntity);
+    }
+
+    public void updatePrice(Long id) {
+        BookEntity bookEntity = bookRepository.getBookById(id);
+    }
 }

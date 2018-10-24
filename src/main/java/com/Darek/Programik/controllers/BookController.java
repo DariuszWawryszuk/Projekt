@@ -6,6 +6,7 @@ import com.Darek.Programik.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -43,7 +44,11 @@ public class BookController {
         BookEntity bookEntity = bookService.getBook(id);
         model.addAttribute("book",bookEntity);
         return "book";
-
+    }
+    @RequestMapping("/book/delete/{id}")
+    public String deleteBook(@PathVariable("id") Long id) {
+        bookService.deleteBook(id);
+        return "redirect:/books";
     }
 
 }

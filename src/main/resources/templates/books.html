@@ -22,6 +22,10 @@
         <td>Rodzaj</td>
         <td>Ilość</td>
         <td>Cena</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
     </tr>
     </thead>
     <tbody th:each=" book : ${books}">
@@ -33,6 +37,8 @@
         <td th:text="${book.type}"></td>
         <td th:text="${book.quantity}"></td>
         <td th:text="${book.price}"></td>
+        <td><a th:href="${'/book/delete/'+book.id}">Usun</a></td>
+
     </tr>
     </tbody>
 </table>
