@@ -38,6 +38,7 @@
         <td th:text="${book.quantity}"></td>
         <td th:text="${book.price}"></td>
         <td><a th:href="${'/book/delete/'+book.id}">Usun</a></td>
+        <td><a th:href="${'/price/'+book.id}">Zmeń cenę</a></td>
 
     </tr>
     </tbody>

@@ -51,4 +51,18 @@ public class BookController {
         return "redirect:/books";
     }
 
+    @RequestMapping("/price/{id}")
+    public String changePrice(@PathVariable("id") Long id, Model model) {
+        BookEntity bookEntity = bookService.getBookById(id);
+        model.addAttribute("book",bookEntity);
+        return "price";
+    }
+
+    @RequestMapping(value = "/price/change", method = RequestMethod.POST)
+    public String changePrice( BookEntity bookEntity){
+        bookService.changePrice(bookEntity);
+        return "redirect:/books";
+    }
+
+
 }

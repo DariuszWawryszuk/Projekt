@@ -42,4 +42,9 @@ public class BookRepository  {
     public void createBook(BookEntity bookEntity) {
         em.persist(bookEntity);
     }
+
+    public void changePrice(BookEntity book, float price) {
+        book.setPrice(price);
+
+    }
 }

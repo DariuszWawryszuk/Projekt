@@ -39,4 +39,18 @@ public class BookService {
     public void updatePrice(Long id) {
         BookEntity bookEntity = bookRepository.getBookById(id);
     }
+
+    public BookEntity getBookById(Long id) {
+        return bookRepository.getBookById(id);
+    }
+
+    public void changePrice(BookEntity bookEntity) {
+        Long id = bookEntity.getId();
+        float price = bookEntity.getPrice();
+        BookEntity book = bookRepository.getBookById(id);
+        bookRepository.changePrice(book, price);
+        bookRepository.updateBook(id,bookEntity);
+    }
+
+
 }
