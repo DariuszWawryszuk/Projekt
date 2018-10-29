@@ -45,7 +45,7 @@ public class BookController {
         model.addAttribute("book",bookEntity);
         return "book";
     }
-    @RequestMapping("/book/delete/{id}")
+    @RequestMapping("/delete/{id}")
     public String deleteBook(@PathVariable("id") Long id) {
         bookService.deleteBook(id);
         return "redirect:/books";
