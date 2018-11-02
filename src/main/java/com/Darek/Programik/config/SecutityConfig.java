@@ -18,7 +18,6 @@ public class SecutityConfig extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(HttpSecurity security) throws Exception {
 
-        //http.headers().frameOptions().disable();
 
         security.authorizeRequests()
                 .antMatchers("/h2-console/**").permitAll()
@@ -27,7 +26,7 @@ public class SecutityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/newbookinbasket").hasAnyAuthority("USER")
                 .antMatchers("/book").hasAnyAuthority("USER")
                 .antMatchers("/newbook").hasAnyAuthority("ADMIN")
-                .antMatchers("/delete").hasAnyAuthority("ADMIN")
+                .antMatchers("/delete/**").hasAnyAuthority("ADMIN")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin().defaultSuccessUrl("/books");
